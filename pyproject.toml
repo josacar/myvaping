@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "myvaping"
+version = "1.5.4"
+description = "myvaping is a healthy alternative to smokeping!"
+readme = "README.md"
+repository = "https://github.com/20c/vaping"
+authors = ["20C <code@20c.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+vaping = ">=1"
+docutils = "<0.21"
+
+# plugins
+
+# graphite
+requests = { version = ">=2.19.1", optional = true }
+graphyte = { version = ">=1.4", optional = true }
+
+# rrdtool
+rrdtool = { version = ">=0.1.14, <1", optional = true }
+
+# prometheus
+prometheus_client = { version = ">=0.11.0", optional = true }
+
+# standalone
+graphsrv = { version = "^2", optional = true }
+vodka = { version = "^3.1", optional = true }
+# FIXME: wekzeug >2.1.0 breaks static file serving
+Werkzeug = { version = ">2,<2.1.0", optional = true }
+Flask = { version = ">2,<2.2", optional = true }
+
+# whisper
+whisper = { version = ">=0.9.15, <2", optional = true }
+
+# zeromq
+pyzmq = { version = ">=15.3.0", optional = true }
+
+# gunicorn
+gunicorn = { version = ">2", optional = true }
+
+[tool.poetry.extras]
+graphite = ["graphyte", "requests"]
+rrdtool = ["rrdtool"]
+prometheus = ["prometheus_client"]
+standalone = ["graphsrv", "vodka"]
+whisper = ["whisper"]
+zeromq = ["pyzmq"]
+gunicorn = ["gunicorn"]
+
+# all extras
+all = [
+    "graphsrv",
+    "graphyte",
+    "prometheus_client",
+    "pyzmq",
+    "rrdtool",
+    "requests",
+    "vodka",
+    "whisper",
+]
+
+[build-system]
+requires = ["poetry-core>=1"]
+build-backend = "poetry.core.masonry.api"

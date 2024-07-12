@@ -1,0 +1,74 @@
+probes:
+  - name: latency
+    type: std_fping
+    output:
+      - zmq_vodka
+      - whisper_avg
+
+    groups:
+      - name: public_dns
+        hosts:
+          - host: 1.1.1.1
+            name: cloudflare
+            color: orange
+          - host: 62.115.182.97
+            name: DIGI
+            color: blue
+      - name: internal
+        hosts:
+          - host: 192.168.1.254
+            name: router
+            color: red
+
+plugins:
+  - name: std_fping
+    type: fping
+    count: 10
+    interval: 3s
+
+  - name: zmq_vodka
+    type: zeromq
+    bind: tcp://127.0.0.1:6021
+
+  - name: whisper_avg
+    type: whisper
+
+    # will create one file per host
+    # for example: latency-8.8.8.8-avg
+    filename: '{source}-{host}-{field}.wsp'
+
+    # specified which field to retrieve the value from
+    field: avg
+
+    # whisper configuration
+    aggregation_method: average
+    sparse: false
+    x_files_factor: 0.5
+    retention:
+      - 3s:1d
+
+
+logging:
+  version: 1
+  formatters:
+    simple:
+      format: '%(asctime)s - %(name)s - %(levelname)s: %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: simple
+      stream: ext://sys.stdout
+
+    #file:
+    #  class: logging.FileHandler
+    #  level: DEBUG
+    #  formatter: simple
+    #  filename: /home/dev/sandbox/vaping/vaping.log
+
+  loggers:
+    vaping:
+      level: DEBUG
+      handlers:
+        - console
+        #- file
