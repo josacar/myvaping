@@ -1,10 +1,9 @@
 [tool.poetry]
 name = "myvaping"
-version = "1.5.4"
-description = "myvaping is a healthy alternative to smokeping!"
+version = "0.0.0"
+description = "myvaping"
 readme = "README.md"
-repository = "https://github.com/20c/vaping"
-authors = ["20C <code@20c.com>"]
+authors = ["joseluis@someone.in.black"]
 license = "Apache-2.0"
 
 [tool.poetry.dependencies]
