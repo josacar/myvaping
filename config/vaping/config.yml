@@ -19,6 +19,9 @@ probes:
           - host: 192.168.1.254
             name: router
             color: red
+          - host: 192.168.1.252
+            name: re330
+            color: yellow
 
 plugins:
   - name: std_fping

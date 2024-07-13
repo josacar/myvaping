@@ -24,6 +24,9 @@ apps:
           192.168.1.254:
             name: router
             color: red
+          192.168.1.252:
+            name: re330
+            color: yellow
 
     graphs:
       multitarget:
