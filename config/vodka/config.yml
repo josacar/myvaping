@@ -38,9 +38,8 @@ apps:
         plot_y: avg
 
 plugins:
-  # zero mq probe plugin to vaping-1 instance
-  # (latency name is important, so it can be routed properly to
-  # the similarly named group)
+  # zero mq probe plugin (latency name is important, so it can be
+  # routed properly to the similarly named group)
   - name: latency
     type: zeromq_probe
     data: fping

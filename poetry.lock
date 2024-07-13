@@ -17,7 +17,7 @@ name = "cffi"
 version = "1.16.0"
 description = "Foreign Function Interface for Python calling C code."
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "cffi-1.16.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:6b3d6606d369fc1da4fd8c357d026317fbb9c9b75d36dc16e90e84c26854b088"},
@@ -259,7 +259,7 @@ name = "gevent"
 version = "24.2.1"
 description = "Coroutine-based network library"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "gevent-24.2.1-cp310-cp310-macosx_11_0_universal2.whl", hash = "sha256:6f947a9abc1a129858391b3d9334c45041c08a0f23d14333d5b844b6e5c17a07"},
@@ -354,7 +354,7 @@ name = "greenlet"
 version = "3.0.3"
 description = "Lightweight in-process concurrent programming"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "greenlet-3.0.3-cp310-cp310-macosx_11_0_universal2.whl", hash = "sha256:9da2bd29ed9e4f15955dd1595ad7bc9320308a3b766ef7f837e23ad4b4aac31a"},
@@ -703,7 +703,7 @@ name = "pycparser"
 version = "2.22"
 description = "C parser in Python"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "pycparser-2.22-py3-none-any.whl", hash = "sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc"},
@@ -1029,21 +1029,25 @@ zeromq = ["pyzmq (>=15.3.0)"]
 
 [[package]]
 name = "vodka"
-version = "3.2.0"
+version = "3.2.0.1"
 description = "plugin based real-time web service daemon"
 category = "main"
 optional = true
-python-versions = ">=3.7,<4.0"
-files = [
-    {file = "vodka-3.2.0-py3-none-any.whl", hash = "sha256:0cda6a66b4e8b684bdaba3de0610c87a7ab299c23c8922bc33ff4a7a68906ccb"},
-    {file = "vodka-3.2.0.tar.gz", hash = "sha256:367592ade0df8d8f5f9c3b9024838d9416559ac6a1a9c8d4cb9d5bcb6f57629e"},
-]
+python-versions = "^3.7"
+files = []
+develop = false
 
 [package.dependencies]
 click = "*"
-munge = ">=1,<2"
-pluginmgr = ">=1,<2"
-tmpl = ">=1,<2"
+munge = "^1"
+pluginmgr = "^1"
+tmpl = "^1"
+
+[package.source]
+type = "git"
+url = "https://github.com/20c/vodka"
+reference = "master"
+resolved_reference = "f03a3910583f1616f436b3a594ac9824611a0df2"
 
 [[package]]
 name = "werkzeug"
@@ -1095,7 +1099,7 @@ name = "zope-event"
 version = "5.0"
 description = "Very basic event publishing system"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "zope.event-5.0-py3-none-any.whl", hash = "sha256:2832e95014f4db26c47a13fdaef84cef2f4df37e66b59d8f1f4a8f319a632c26"},
@@ -1114,7 +1118,7 @@ name = "zope-interface"
 version = "6.4.post2"
 description = "Interfaces for Python"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "zope.interface-6.4.post2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:2eccd5bef45883802848f821d940367c1d0ad588de71e5cabe3813175444202c"},
@@ -1166,7 +1170,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [extras]
 all = ["graphsrv", "graphyte", "prometheus_client", "pyzmq", "rrdtool", "requests", "vodka", "whisper"]
 graphite = ["graphyte", "requests"]
-gunicorn = ["gunicorn"]
+gunicorn = ["gunicorn", "gevent"]
 prometheus = ["prometheus_client"]
 rrdtool = ["rrdtool"]
 standalone = ["graphsrv", "vodka"]
@@ -1176,4 +1180,4 @@ zeromq = ["pyzmq"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "072066fc1d61c00b2721e083666bb8afff96b7df16e38764378542f07dd8e2fc"
+content-hash = "7503dcf877361e3a4c81570c45bf93756c68009bb4ce71d14ace4ae6fd41b3b9"
