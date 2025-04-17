@@ -1,15 +1,19 @@
-[tool.poetry]
+[project]
 name = "myvaping"
-version = "0.0.0"
+version = "0.1.0"
 description = "myvaping"
 readme = "README.md"
 authors = ["joseluis@someone.in.black"]
+requires-python = ">=3.10"
 license = "Apache-2.0"
-
-[tool.poetry.dependencies]
-python = "^3.8"
-vaping = ">=1"
-docutils = "<0.21"
+dependencies = [
+  "vaping > 1",
+  "docutils < 0.21",
+  "pyzmq>=26.4.0",
+  "whisper>=1.1.10",
+  "standalone>=1.0.1",
+  "gunicorn>=23.0.0",
+]
 
 # plugins
 
@@ -43,7 +47,7 @@ pyzmq = { version = ">=15.3.0", optional = true }
 gunicorn = { version = ">2", optional = true }
 gevent = { version = "^24.2.1", optional = true }
 
-[tool.poetry.extras]
+[project.optional-dependencies]
 graphite = ["graphyte", "requests"]
 rrdtool = ["rrdtool"]
 prometheus = ["prometheus_client"]
@@ -54,16 +58,12 @@ gunicorn = ["gunicorn", "gevent"]
 
 # all extras
 all = [
-    "graphsrv",
-    "graphyte",
-    "prometheus_client",
-    "pyzmq",
-    "rrdtool",
-    "requests",
-    "vodka",
-    "whisper",
+  "graphsrv",
+  "graphyte",
+  "prometheus_client",
+  "pyzmq",
+  "rrdtool",
+  "requests",
+  "vodka",
+  "whisper",
 ]
-
-[build-system]
-requires = ["poetry-core>=1"]
-build-backend = "poetry.core.masonry.api"

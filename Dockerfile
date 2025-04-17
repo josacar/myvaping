@@ -2,6 +2,7 @@ FROM debian:12
 
 WORKDIR /app
 
-COPY deps.sh pyproject.toml poetry.lock /app
+RUN apt-get update -q && apt-get install -y curl
+COPY deps.sh pyproject.toml uv.lock /app
 
 RUN sh deps.sh
