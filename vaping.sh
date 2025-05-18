@@ -1,1 +1,1 @@
-uv run vaping start --home=config/vaping --no-fork
+uv run --extra whisper --extra zeromq vaping start --home=config/vaping --no-fork

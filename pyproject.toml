@@ -1,9 +1,7 @@
 [project]
 name = "myvaping"
 version = "0.1.0"
-description = "myvaping"
-readme = "README.md"
-authors = ["joseluis@someone.in.black"]
+authors = [{ name = "Jose Luis", email = "josacar@users.noreply.github.com" }]
 requires-python = ">=3.10"
 license = "Apache-2.0"
 dependencies = [
@@ -14,47 +12,21 @@ dependencies = [
   "standalone>=1.0.1",
   "gunicorn>=23.0.0",
 ]
-
-# plugins
-
-# graphite
-requests = { version = ">=2.19.1", optional = true }
-graphyte = { version = ">=1.4", optional = true }
-
-# rrdtool
-rrdtool = { version = ">=0.1.14, <1", optional = true }
-
-# prometheus
-prometheus_client = { version = ">=0.11.0", optional = true }
-
-# standalone
-graphsrv = { version = "^2", optional = true }
-
+[tool.uv.sources]
 # Avoid blank graphs https://github.com/20c/vaping/issues/173
-vodka = { git = "https://github.com/20c/vodka", branch = "master", optional = true }
-
-# FIXME: wekzeug >2.1.0 breaks static file serving
-Werkzeug = { version = ">2,<2.1.0", optional = true }
-Flask = { version = ">2,<2.2", optional = true }
-
-# whisper
-whisper = { version = ">=0.9.15, <2", optional = true }
-
-# zeromq
-pyzmq = { version = ">=15.3.0", optional = true }
-
-# gunicorn
-gunicorn = { version = ">2", optional = true }
-gevent = { version = "^24.2.1", optional = true }
+vodka = { git = "https://github.com/20c/vodka", branch = "master" }
 
 [project.optional-dependencies]
-graphite = ["graphyte", "requests"]
-rrdtool = ["rrdtool"]
-prometheus = ["prometheus_client"]
-standalone = ["graphsrv", "vodka"]
-whisper = ["whisper"]
-zeromq = ["pyzmq"]
-gunicorn = ["gunicorn", "gevent"]
+graphite = ["requests>=2.19.1", "graphyte>=1.4"]
+rrdtool = ["rrdtool>=0.1.14, <1"]
+prometheus = ["prometheus_client>=0.11.0"]
+standalone = ["graphsrv>=2", "vodka"]
+whisper = ["whisper>=0.9.15, <2"]
+zeromq = ["pyzmq>=15.3.0"]
+gunicorn = ["gunicorn>2", "gevent>=24.2.1"]
+Flask = ["Flask>2", "Flask<2.2"]
+## FIXME: wekzeug >2.1.0 breaks static file serving
+Werkzeug = ["Werkzeug>2", "Werkzeug<2.1.0"]
 
 # all extras
 all = [
